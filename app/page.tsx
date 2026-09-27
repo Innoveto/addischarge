@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import MapMockup from "@/components/MapMockup";
+import StationMap from "@/components/StationMap";
 import PhoneMockups from "@/components/PhoneMockups";
 import HowItWorks from "@/components/HowItWorks";
 import IdeasGrid from "@/components/IdeasGrid";
@@ -13,7 +13,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <MapMockup />
+        <StationMap />
         <PhoneMockups />
         <HowItWorks />
         <IdeasGrid />

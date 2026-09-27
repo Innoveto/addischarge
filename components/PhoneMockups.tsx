@@ -1,3 +1,7 @@
+"use client";
+
+import { useI18n } from "@/lib/i18n";
+
 function PhoneShell({
   title,
   children,
@@ -27,56 +31,81 @@ function PhoneShell({
 }
 
 export default function PhoneMockups() {
+  const { t } = useI18n();
+
   return (
-    <section id="app" className="border-b border-charcoal-border bg-charcoal-elevated/40">
+    <section
+      id="app"
+      className="border-b border-charcoal-border bg-charcoal-elevated/40"
+    >
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="mb-12 max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-wider text-ethio-green-bright">
-            Product UI
+            {t.app.eyebrow}
           </p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-            Phone mockups — list, detail, pay
+            {t.app.title}
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-            Three screens that tell the story: browse nearby stations, open a
-            bay with live occupancy, and checkout with Telebirr, card, or
-            wallet.
+            {t.app.body}
           </p>
         </div>
 
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {/* List */}
-          <PhoneShell title="Map list">
+          <PhoneShell title={t.app.listTitle}>
             <div className="space-y-2 px-3 pb-5">
               <div className="rounded-lg bg-charcoal-card px-2.5 py-2 text-[10px] text-muted">
-                Near you · Bole / CMC
+                {t.app.nearYou}
               </div>
               {[
-                { n: "Megenagna Hub", s: "Available", kw: "120 kW", ok: true },
-                { n: "Bole Atlas", s: "Available", kw: "150 kW", ok: true },
-                { n: "Kazanchis Plaza", s: "1 of 2 busy", kw: "50 kW", ok: false },
-                { n: "CMC Residential", s: "Available", kw: "22 kW", ok: true },
+                {
+                  n: "Megenagna Hub",
+                  s: t.status.available,
+                  kw: "120 kW",
+                  ok: true,
+                },
+                {
+                  n: "Bole Atlas",
+                  s: t.status.available,
+                  kw: "150 kW",
+                  ok: true,
+                },
+                {
+                  n: "Kazanchis Plaza",
+                  s: t.app.ofBusy,
+                  kw: "50 kW",
+                  ok: false,
+                },
+                {
+                  n: "CMC Residential",
+                  s: t.status.available,
+                  kw: "22 kW",
+                  ok: true,
+                },
               ].map((r) => (
                 <div
                   key={r.n}
                   className="flex items-center justify-between rounded-xl border border-charcoal-border/70 bg-charcoal-card px-2.5 py-2"
                 >
                   <div>
-                    <p className="text-[11px] font-semibold text-white">{r.n}</p>
+                    <p className="text-[11px] font-semibold text-white">
+                      {r.n}
+                    </p>
                     <p
                       className={`text-[9px] ${r.ok ? "text-ethio-green-bright" : "text-ethio-gold"}`}
                     >
                       {r.s}
                     </p>
                   </div>
-                  <span className="font-mono text-[9px] text-muted">{r.kw}</span>
+                  <span className="font-mono text-[9px] text-muted">
+                    {r.kw}
+                  </span>
                 </div>
               ))}
             </div>
           </PhoneShell>
 
-          {/* Detail */}
-          <PhoneShell title="Station detail">
+          <PhoneShell title={t.app.detailTitle}>
             <div className="px-3 pb-5">
               <div className="rounded-xl bg-gradient-to-br from-ethio-green/30 to-charcoal-card p-3">
                 <p className="text-[11px] font-semibold text-white">
@@ -87,9 +116,9 @@ export default function PhoneMockups() {
                 </p>
                 <div className="mt-3 flex gap-2">
                   {[
-                    { bay: "Bay A", state: "Free" },
-                    { bay: "Bay B", state: "Charging" },
-                    { bay: "Bay C", state: "Free" },
+                    { bay: "Bay A", state: t.app.bayFree, free: true },
+                    { bay: "Bay B", state: t.app.bayCharging, free: false },
+                    { bay: "Bay C", state: t.app.bayFree, free: true },
                   ].map((b) => (
                     <div
                       key={b.bay}
@@ -98,7 +127,7 @@ export default function PhoneMockups() {
                       <p className="text-[9px] text-muted">{b.bay}</p>
                       <p
                         className={`mt-0.5 text-[10px] font-semibold ${
-                          b.state === "Free"
+                          b.free
                             ? "text-ethio-green-bright"
                             : "text-ethio-gold"
                         }`}
@@ -110,32 +139,44 @@ export default function PhoneMockups() {
                 </div>
               </div>
               <div className="mt-3 space-y-1.5 text-[10px] text-muted">
-                <p>Occupancy updated 42s ago</p>
-                <p>Open 06:00 – 23:00 · ETB / kWh</p>
+                <p>{t.app.occupancyAgo}</p>
+                <p>{t.app.hours}</p>
               </div>
               <button
                 type="button"
                 className="mt-4 w-full rounded-lg bg-ethio-green py-2 text-[11px] font-semibold text-white"
               >
-                Start session
+                {t.app.startSession}
               </button>
             </div>
           </PhoneShell>
 
-          {/* Pay */}
-          <PhoneShell title="In-app pay">
+          <PhoneShell title={t.app.payTitle}>
             <div className="px-3 pb-5">
               <p className="text-[11px] font-semibold text-white">
-                Checkout · Bay A
+                {t.app.checkout}
               </p>
-              <p className="mt-1 text-[9px] text-muted">
-                Est. 28 kWh · ~ETB 420
-              </p>
+              <p className="mt-1 text-[9px] text-muted">{t.app.estimate}</p>
               <div className="mt-3 space-y-2">
                 {[
-                  { id: "telebirr", label: "Telebirr", sub: "Preferred", on: true },
-                  { id: "card", label: "Card", sub: "Visa / Mastercard", on: false },
-                  { id: "wallet", label: "Wallet", sub: "AddisCharge balance", on: false },
+                  {
+                    id: "telebirr",
+                    label: t.app.telebirr,
+                    sub: t.app.telebirrSub,
+                    on: true,
+                  },
+                  {
+                    id: "card",
+                    label: t.app.card,
+                    sub: t.app.cardSub,
+                    on: false,
+                  },
+                  {
+                    id: "wallet",
+                    label: t.app.wallet,
+                    sub: t.app.walletSub,
+                    on: false,
+                  },
                 ].map((p) => (
                   <div
                     key={p.id}
@@ -165,7 +206,7 @@ export default function PhoneMockups() {
                 type="button"
                 className="mt-4 w-full rounded-lg bg-ethio-gold py-2 text-[11px] font-bold text-charcoal"
               >
-                Confirm &amp; pay
+                {t.app.confirmPay}
               </button>
             </div>
           </PhoneShell>
