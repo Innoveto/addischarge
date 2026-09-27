@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --background: #121416;
+  --foreground: #f2f4f5;
+  --charcoal: #121416;
+  --charcoal-elevated: #1a1d21;
+  --charcoal-card: #22262b;
+  --charcoal-border: #2e343b;
+  --muted: #9aa3ad;
+  --green: #078930;
+  --green-bright: #0aab3c;
+  --gold: #fcdd09;
+  --gold-dim: #c9b008;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-elevated: var(--charcoal-elevated);
+  --color-charcoal-card: var(--charcoal-card);
+  --color-charcoal-border: var(--charcoal-border);
+  --color-muted: var(--muted);
+  --color-ethio-green: var(--green);
+  --color-ethio-green-bright: var(--green-bright);
+  --color-ethio-gold: var(--gold);
+  --color-ethio-gold-dim: var(--gold-dim);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--green) 40%, transparent);
+  color: white;
+}
